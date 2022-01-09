@@ -1,6 +1,21 @@
 <apex:page standardController="Account" recordSetVar="myAccounts" extensions="AccountController">
-<!-- Begin Default Content REMOVE THIS -->
-<h1>Congratulations</h1>
-This is your new Page
-<!-- End Default Content REMOVE THIS -->
+    <apex:form >
+
+        <apex:pageBlock >
+
+            <!-- We can use the pageBlockButtons to place buttons at the start and end of the page block -->
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!Previous}" value="Previous" />
+                <apex:commandButton action="{!Next}" value="Next" />
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockTable value="{!myAccounts}" var="acc">
+                <apex:column value="{!acc.name}" />
+            </apex:pageBlockTable>
+
+        </apex:pageBlock>
+
+        <!-- The detail tag can show a record detail page -->
+        <apex:detail />
+    </apex:form>
 </apex:page>

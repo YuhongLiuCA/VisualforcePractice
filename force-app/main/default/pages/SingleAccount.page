@@ -1,0 +1,17 @@
+<apex:page standardController="Account">
+    <script>
+        function clickFunction() {
+            var v = '{! Account.Name}';
+            alert("Hello " + v);
+        }
+    </script>
+   
+    
+        <h1>
+            Hello {! Account.Name} !
+        </h1>
+        <button onclick="clickFunction();">
+            Click
+    </button>       
+  
+</apex:page>
