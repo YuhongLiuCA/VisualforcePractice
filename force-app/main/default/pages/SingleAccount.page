@@ -1,4 +1,7 @@
-<apex:page standardController="Account" extensions="SingleAccountController" renderAs="pdf">
+<apex:page standardController="Account" extensions="SingleAccountController">
+    <!-- CSS file -->
+    <apex:stylesheet value="{!$Resource.myCSS}" />
+
     <script>
         function clickFunction() {
             var v = '{! Account.Name}';
@@ -18,9 +21,33 @@
         <apex:outputField value="{!myAccount.name}" />
         
          <!-- About me part -->
-        <h2>About me:</h2>
-        <apex:outputText value="{!$Label.YuhongLiu}" />
+        <h2 id="aboutMeMain">About me:</h2>
+        <apex:outputText id="aboutMeText" value="{!$Label.YuhongLiu}" />
     </apex:pageBlock>
+    <apex:form >
+        <apex:pageBlock title="Search account name" id="accountBlock">
+        <apex:pageBlockSection >
+            <apex:outputLabel for="searchText">Search name:</apex:outputLabel>
+            <apex:panelGroup >
+                <apex:inputText id="searchText" value="{! searchText}" />
+                <apex:commandButton value="Search" action="{! SearchAccountByName}" status="status" />
+            </apex:panelGroup>
+        </apex:pageBlockSection>
+    	</apex:pageBlock>
+    </apex:form>
     
-  
+    <apex:pageBlock title="Details" id="AccountDetail">
+        <apex:outputField value="{! result.name}" />
+        <apex:outputField value="{! result.annualRevenue}" />
+        <apex:outputField value="{! result.type}" />
+        <apex:outputField value="{! result.accountNumber}" />          
+    </apex:pageBlock>    
+    
+    <apex:pageBlock title="Contacts">
+   	    <apex:pageBlockTable value="{!result.contacts}" var="contact">
+            <apex:column value="{!contact.Name}"/>
+            <apex:column value="{!contact.Title}"/>
+            <apex:column value="{!contact.Phone}"/>
+   	    </apex:pageBlockTable>
+	</apex:pageBlock>  
 </apex:page>
