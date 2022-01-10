@@ -1,4 +1,4 @@
-<apex:page standardController="Account">
+<apex:page standardController="Account" extensions="SingleAccountController">
     <script>
         function clickFunction() {
             var v = '{! Account.Name}';
@@ -12,6 +12,11 @@
         </h1>
         <button onclick="clickFunction();">
             Click
-    </button>       
+    </button>     
+    <apex:pageBlock>
+        <h1>Constant account as:</h1>
+        <apex:outputField value="{!myAccount.name}" />
+    </apex:pageBlock>
+    
   
 </apex:page>
